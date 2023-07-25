@@ -1,0 +1,803 @@
+	5.
+34)
+using System;
+
+Console.WriteLine("Введите длину массива:  ");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] numbers = new int[size];
+RandonNumbers(numbers);
+Console.WriteLine("В этом массиве: ");
+PrintArray(numbers);
+
+void RandonNumbers(int[] numbers)
+{
+    for (int i = 0; i < size; i++)
+    {
+        numbers[i] = new Random().Next(100, 1000);
+    }
+}
+
+
+int count = 0;
+
+for (int x = 0; x < numbers.Length; x++)
+{
+    if (numbers[x] % 2 == 0)
+        count++;
+}
+Console.WriteLine($"{count} четных");
+
+
+void PrintArray(int[] numbers)
+{
+    Console.Write("[ ");
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        Console.Write(numbers[i] + " ");
+    }
+    Console.Write("]");
+    Console.WriteLine();
+}
+
+36)
+using System;
+
+Console.WriteLine($"Введи длину массива: ");
+int ElementNumbers = Convert.ToInt32(Console.ReadLine());
+int randomNumber = RandomNumbers(ElementNumbers, 1, 10);
+Console.WriteLine($"  Сумма элементов, стоящих на нечётных позициях: {randomNumber}");
+
+
+
+int RandomNumbers(int ElementNumbers, int min, int max)
+{
+    int[] randomNumber = new int[ElementNumbers];
+    int sumElements = 0;
+    Console.Write("Получившийся массив: ");
+
+    for (int i = 0; i < randomNumber.Length; i++)
+    {
+        randomNumber[i] = new Random().Next(min, max);
+
+        Console.Write(randomNumber[i] + " ");
+
+        if (i % 2 != 1)
+        {
+            sumElements = sumElements + randomNumber[i];
+        }
+    }
+    return sumElements;
+}
+
+38)
+using System;
+
+Console.WriteLine("Введите длину массива  ");
+
+int size = Convert.ToInt32(Console.ReadLine());
+
+double[] number = new double[size];
+
+FillArrayRandomNumbers(number);
+
+Console.WriteLine("Массив: ");
+
+PrintArray(number);
+
+
+double min = Int32.MaxValue;
+double max = Int32.MinValue;
+
+for (int a = 0; a < number.Length; a++)
+{
+    if (number[a] > max)
+    {
+        max = number[a];
+    }
+    if (number[a] < min)
+    {
+        min = number[a];
+    }
+}
+
+Console.WriteLine($"Всего в массиве {number.Length} чисел. Максимальное = {max}, Минимальное = {min}");
+Console.WriteLine($"Разность между максимальным и минимальным = {max - min}");
+
+void FillArrayRandomNumbers(double[] number)
+{
+    for (int i = 0; i < number.Length; i++)
+    {
+        number[i] = Convert.ToDouble(new Random().Next(100, 1000)) / 100;
+    }
+}
+void PrintArray(double[] number)
+{
+    Console.Write("[ ");
+    for (int i = 0; i < number.Length; i++)
+    {
+        Console.Write(number[i] + " ");
+    }
+    Console.Write("]");
+    Console.WriteLine();
+}
+
+	6.
+41)
+using System;
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.WriteLine("Введите числа через запятую: ");
+        int[] numbers = StringNumbers(Console.ReadLine()!);
+        PrintArray(numbers);
+
+        int sum = 0;
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            if (numbers[i] > 0)
+            {
+                sum++;
+            }
+        }
+        Console.WriteLine();
+        Console.WriteLine($"количество значений больше 0 = {sum}");
+
+
+        int[] StringNumbers(string input)
+        {
+            int count = 1;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == ',')
+                {
+                    count++;
+                }
+            }
+
+            int[] numbers = new int[count];
+            int index = 0;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                string temp = "";
+
+                while (input[i] != ',')
+                {
+                    if (i != input.Length - 1)
+                    {
+                        temp += input[i].ToString();
+                        i++;
+                    }
+                    else
+                    {
+                        temp += input[i].ToString();
+                        break;
+                    }
+                }
+                numbers[index] = Convert.ToInt32(temp);
+                index++;
+            }
+            return numbers;
+        }
+
+
+        void PrintArray(int[] array)
+        {
+            Console.Write("[ ");
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + " ");
+            }
+            Console.Write("]");
+        }
+        Console.ReadKey();
+    }
+}
+
+43)
+using System;
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Console.Write("Введите b1: ");
+        var b1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Введите k1: ");
+        var k1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Введите b2: ");
+        var b2 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Введите k2: ");
+        var k2 = Convert.ToDouble(Console.ReadLine());
+
+
+        var x = -(b1 - b2) / (k1 - k2);
+        var y = k1 * x + b1;
+
+        x = Math.Round(x, 3);
+        y = Math.Round(y, 3);
+
+        Console.WriteLine($"Пересечение в точке: ({x};{y})");
+    }
+}
+
+	7.
+47)
+using System;
+
+namespace task47
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("введите количество строк");
+ 	        int linesVol = Convert.ToInt32(Console.ReadLine());
+ 	        Console.WriteLine("введите количество столбцов");
+ 	        int columnsVol = Convert.ToInt32(Console.ReadLine());
+ 	        double[,] numbers = new double[linesVol, columnsVol];
+ 	        FillArrayRandomNumbers(numbers);
+ 	        PrintArray(numbers);
+ 	 
+ 	        void FillArrayRandomNumbers(double[,] array)
+ 	        {
+ 	        for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                    array[i, j] = Convert.ToDouble(new Random().Next(-100, 100)) / 10;
+                    }
+                }
+            }
+ 	 
+         	    void PrintArray(double[,] array)
+            {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+            Console.Write("[ ");
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+            Console.Write(array[i, j] + " ");
+            }
+            Console.Write("]");
+            Console.WriteLine("");
+            }
+            }
+        }
+    }
+}
+
+50)
+using System;
+namespace task50
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+        Console.WriteLine("введите номер строки");
+        int n = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("введите номер столбца");
+        int m = Convert.ToInt32(Console.ReadLine());
+        int [,] numbers = new int [10,10];
+        FillArrayRandomNumbers(numbers);
+        
+        if (n > numbers.GetLength(0) || m > numbers.GetLength(1))
+        {
+        Console.WriteLine("такого элемента нет");
+        }
+        else
+        {
+        Console.WriteLine($"значение элемента {n} строки и {m} столбца равно {numbers[n-1,m-1]}");
+        }
+        
+        PrintArray(numbers);
+        
+        void FillArrayRandomNumbers(int[,] array)
+        {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+        array [i,j] = new Random().Next(-100, 100)/10;
+        }
+        }
+        }
+        
+        void PrintArray(int[,] array)
+        {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+        Console.Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+        Console.Write(array[i,j] + " ");
+        }
+        Console.Write("]");
+        Console.WriteLine("");
+        }
+        }
+
+        }
+    }
+}
+
+52)
+using System;
+namespace task52
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("введите количество строк");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("введите количество столбцов");
+            int m = Convert.ToInt32(Console.ReadLine());
+            
+            int[,] numbers = new int[n, m];
+            FillArrayRandomNumbers(numbers);
+            
+            
+            for (int j = 0; j < numbers.GetLength(1); j++)
+            {
+            double avarage = 0;
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+            avarage = (avarage + numbers[i, j]);
+            }
+            avarage = avarage / n;
+            Console.Write(avarage + "; ");
+            }
+            Console.WriteLine();
+            PrintArray(numbers);
+            
+            
+            
+            void FillArrayRandomNumbers(int[,] array)
+            {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+            array[i, j] = new Random().Next(0, 10);
+            }
+            }
+            }
+            
+            void PrintArray(int[,] array)
+            {
+            
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+            Console.Write("[ ");
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+            Console.Write(array[i, j] + " ");
+            }
+            Console.Write("]");
+            Console.WriteLine("");
+            }
+            }
+        }
+    }
+}
+
+	8.
+54)
+using System;
+namespace task54
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("введите количество строк");
+            int linesVol = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("введите количество столбцов");
+            int columnsVol = Convert.ToInt32(Console.ReadLine());
+            int[,] numbers = new int[linesVol, columnsVol];
+            FillArrayRandomNumbers(numbers);
+            Console.WriteLine();
+            Console.WriteLine("Массив до изменения");
+            PrintArray(numbers);
+            
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                for (int j = 0; j < numbers.GetLength(1) - 1; j++)
+                {
+                    for (int z = 0; z < numbers.GetLength(1) - 1; z++)
+                    {
+                        if (numbers[i, z] < numbers[i, z + 1]) //для изменения сортировки поменять знак < на противоположный
+                        {
+                            int temp = 0;
+                            temp = numbers[i, z];
+                            numbers[i, z] = numbers[i, z + 1];
+                            numbers[i, z + 1] = temp;
+                        }
+                   }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Массив с упорядоченными значениями");
+            PrintArray(numbers);
+            
+            void FillArrayRandomNumbers(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        array[i, j] = new Random().Next(0, 10);
+                    }
+                }
+            }
+
+            void PrintArray(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    Console.Write("[ ");
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.Write("]");
+                    Console.WriteLine("");
+                }
+            }
+        }
+    }
+}
+
+56)
+using System;
+namespace task56
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("введите размер квадратного массива");
+            int massVol = Convert.ToInt32(Console.ReadLine());
+            int[,] numbers = new int[massVol, massVol];
+            FillArrayRandomNumbers(numbers);
+            PrintArray(numbers);
+            int minsum = Int32.MaxValue;
+            int indexLine = 0;
+            
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < numbers.GetLength(1); j++)
+                {
+                   sum = sum + numbers[i, j];
+                }
+                if (sum < minsum)
+                {
+                    minsum = sum;
+                    indexLine++;
+                }
+            }
+            
+            Console.WriteLine("строка с наименьшей суммой елементов под номером: " + (indexLine) + ", с суммой елементов равной: " + (minsum));
+            
+            void FillArrayRandomNumbers(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        array[i, j] = new Random().Next(0, 10);
+                    }
+                }
+            }
+            
+            void PrintArray(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    Console.Write("[ ");
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.Write("]");
+                    Console.WriteLine("");
+                }
+            }
+        }
+    }
+}
+
+58)
+using System;
+namespace task58
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int rows = ReadInt("Введите количество строк: ");
+            int columns = ReadInt("Введите количество столбцов: ");
+            int[,] array = new int[rows, columns];
+            int[,] secondArray = new int[rows, columns];
+            int[,] resultArray = new int[rows, columns];
+            
+            FillArrayRandom(array);
+            PrintArray2D(array);
+            
+            Console.WriteLine();
+            
+            FillArrayRandom(secondArray);
+            PrintArray2D(secondArray);
+            
+            Console.WriteLine();
+            
+            if (array.GetLength(0) != secondArray.GetLength(1))
+            {
+                Console.WriteLine(" Нельзя перемножить ");
+                return;
+            }
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < secondArray.GetLength(1); j++)
+                {
+                    resultArray[i, j] = 0;
+                    for (int k = 0; k < array.GetLength(1); k++)
+                    {
+                       resultArray[i, j] += array[i, k] * secondArray[k, j];
+                    }
+                }
+            }
+            
+            PrintArray2D(resultArray);
+            
+            
+            
+            int ReadInt(string message)
+            {
+                Console.Write(message);
+                return Convert.ToInt32(Console.ReadLine());
+            }
+            
+            void FillArrayRandom(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        array[i, j] = new Random().Next(1, 10);
+                    }
+                }
+            }
+            
+            void PrintArray2D(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write($"{array[i, j]} ");
+                    }
+                    Console.WriteLine();
+                }
+            }            
+        }
+    }
+}
+
+60)
+using System;
+namespace task60
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int deep1 = InputInt("Введите размерность 1: ");
+            int deep2 = InputInt("Введите размерность 2: ");
+            int deep3 = InputInt("Введите размерность 3: ");
+            int countNums = 89;
+            
+            if (deep1 * deep2 * deep3 > countNums)
+            {
+               Console.Write("Массив слишком большой");
+                return;
+            }
+            
+            int[,,] resultNums = Create3DMassive(deep1, deep2, deep3);
+            
+            for (int i = 0; i < resultNums.GetLength(0); i++)
+            {
+                for (int j = 0; j < resultNums.GetLength(1); j++)
+                {
+                    for (int k = 0; k < resultNums.GetLength(2); k++)
+                    {
+                        Console.WriteLine($"[{i},{j},{k}] - {resultNums[i, j, k]}");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+            
+            
+            int[,,] Create3DMassive(int size1, int size2, int size3)
+            {
+                int[,,] array = new int[size1, size2, size3];
+                int[] values = new int[countNums];
+                int num
+                = 10;
+                for (int i = 0; i < values.Length; i++)
+                values[i] = num
+                ++;
+                
+                for (int i = 0; i < values.Length; i++)
+                {
+                    int randomInd = new Random().Next(0, values.Length);
+                    int temp = values[i];
+                    values[i] = values[randomInd];
+                    values[randomInd] = temp;
+                }
+                
+                int valueIndex = 0;
+                
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        for (int k = 0; k < array.GetLength(2); k++)
+                        {
+                            array[i, j, k] = values[valueIndex++];
+                        }
+                    }
+                }
+                return array;
+            }
+            
+            
+            int InputInt(string output)
+            {
+                Console.Write(output);
+                return int.Parse(Console.ReadLine());
+            }
+        }
+    }
+}
+
+62)
+using System;
+namespace task62
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите размер массива");
+            int size = Convert.ToInt32(Console.ReadLine());
+            
+            int[,] nums = new int[size, size];
+            
+            int num = 1;
+            int i = 0;
+            int j = 0;
+            
+            while (num <= size * size)
+            {
+                nums[i, j] = num;
+                if (i <= j + 1 && i + j < size - 1)
+                ++j;
+                else if (i < j && i + j >= size - 1)
+                ++i;
+                else if (i >= j && i + j > size - 1)
+                --j;
+                else
+                --i;
+                ++num;
+            }
+            
+            PrintArray(nums);
+            
+            void PrintArray(int[,] array)
+            {
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    Console.Write("[ ");
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                       Console.Write(array[i, j] + " ");
+                    }
+                    Console.Write("]");
+                    Console.WriteLine("");
+                }
+            }
+        }
+    }
+}
+
+	9.
+66)
+using System;
+namespace task66
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int m = InputNumbers("Введите m: ");
+            int n = InputNumbers("Введите n: ");
+            int temp = m;
+            
+            if (m > n)
+            {
+                m = n;
+                n = temp;
+            }
+            
+            PrintSumm(m, n, temp=0);
+            
+            void PrintSumm(int m, int n, int summ)
+            {
+                summ = summ + n;
+                if (n <= m)
+                {
+                    Console.Write($"Сумма элементов= {summ} ");
+                    return;
+                }
+                PrintSumm(m, n - 1, summ);
+            }
+            
+            int InputNumbers(string input)
+            {
+                Console.Write(input);
+                int output = Convert.ToInt32(Console.ReadLine());
+                return output;
+            }
+        }
+    }
+}
+
+68)
+using System;
+namespace task68
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите число M: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            
+            Console.Write("Введите число N: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            
+            AkkermanFunction(m,n);
+            
+            
+            // вызов функции Аккермана
+            void AkkermanFunction(int m, int n)
+            {
+               Console.Write(Akkerman(m, n));
+            }
+            
+            // функция Аккермана
+            int Akkerman(int m, int n)
+            {
+                if (m == 0)
+                {
+                   return n + 1;
+                }
+                else if (n == 0 && m > 0)
+                {
+                   return Akkerman(m - 1, 1);
+                }
+                else
+                {
+                   return (Akkerman(m - 1, Akkerman(m, n - 1)));
+                }
+            }
+        }
+    }
+}
